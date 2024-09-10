@@ -190,30 +190,63 @@ footer {
   color: $white;
   text-align: center;
   padding: 1rem 0;
+  font-size: 0.875rem; // Texte légèrement réduit pour économiser de l'espace
 
+  // Liens
   a {
     color: $white;
     transition: color 0.3s ease;
+    font-size: 0.875rem;
 
     &:hover {
       color: $accent-color;
     }
   }
 
+  // Espacement des paragraphes
   p {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0; // Réduire les marges pour économiser de l'espace
   }
 
+  // Liste des liens légaux
   ul {
     list-style: none;
     padding: 0;
+    margin: 1rem 0 0; // Réduire les marges pour compacter
 
     li {
-      display: inline;
-      margin: 0 10px;
+      display: inline-block; // Inline-block pour ajuster la hauteur
+      margin: 0 8px; // Espacement réduit entre les liens
     }
   }
+
+  // Section réseaux sociaux
+  .social-icons {
+    margin-top: 0.75rem; // Réduire l'espacement au-dessus des icônes
+
+    a {
+      margin: 0 8px;
+      font-size: 1.25rem; // Taille ajustée des icônes pour réduire la hauteur
+      color: $accent-color;
+      transition: transform 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px); // Léger effet de soulèvement
+        color: $primary-color;
+      }
+    }
+  }
+
+  // Section de copyright
+  .footer-bottom {
+    border-top: 1px solid lighten($dark-bg, 10%);
+    margin-top: 1rem; // Réduction de l'espacement avant la ligne de copyright
+    padding-top: 0.5rem; // Moins d'espace entre la ligne et le texte de copyright
+    font-size: 0.75rem; // Réduire la taille du texte du copyright
+    color: lighten($white, 30%); // Couleur plus claire pour un contraste plus subtil
+  }
 }
+
 
 // Card container pour le menu
 .card-container {
