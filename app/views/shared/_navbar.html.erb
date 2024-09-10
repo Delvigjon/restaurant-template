@@ -1,4 +1,6 @@
- <div class="navbar">
+    <header class="header-banner" style="background-image: url('<%= asset_path('restaurant.jpg') %>');">
+      <!-- Navbar -->
+      <div class="navbar">
         <div class="navbar-logo">Mon Restaurant</div>
         <div class="navbar-links">
           <%= link_to "Accueil", root_path, class: "hover:text-accent-color" %>
@@ -7,3 +9,14 @@
           <%= link_to "Contact", contact_path, class: "hover:text-accent-color" %>
         </div>
       </div>
+
+      <!-- Contenu de la bannière -->
+      <div class="header-content">
+        <h1>Bienvenue chez <span class="text-red-400">[Nom du Restaurant]</span></h1>
+        <p>Découvrez notre cuisine raffinée et réservez une table dès aujourd'hui !</p>
+        <div class="btn-group">
+          <a href="<%= menu_path %>" class="btn">Voir le Menu</a>
+          <a href="<%= reservation_path %>" class="btn">Réserver une Table</a>
+        </div>
+      </div>
+    </header>

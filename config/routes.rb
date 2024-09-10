@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   root 'pages#home'
   get 'menu', to: 'pages#menu'
   get 'contact', to: 'pages#contact'

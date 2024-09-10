@@ -1,0 +1,54 @@
+<div class="flex-container">
+  <%= form_with model: @reservation, url: create_reservation_path, local: true, class: "reservation-form max-w-lg mx-auto bg-white p-10 rounded-xl shadow-lg text-center" do |f| %>
+
+    <!-- Titre centré -->
+    <h1 class="text-4xl font-bold mb-8 text-primary-color">Réservez une table</h1>
+
+    <!-- Champ "Nom" -->
+    <div class="relative mb-6">
+      <%= f.text_field :name, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Nom" %>
+    </div>
+
+    <!-- Champ "Email" -->
+    <div class="relative mb-6">
+      <%= f.email_field :email, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Email" %>
+    </div>
+
+    <!-- Champ "Téléphone" -->
+    <div class="relative mb-6">
+      <%= f.telephone_field :phone, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Téléphone" %>
+    </div>
+
+    <!-- Champ "Date et Heure" avec Flatpickr -->
+    <div class="relative mb-6">
+      <%= f.label :date, "Date et Heure", class: "block text-lg font-semibold mb-2 text-gray-700" %>
+      <%= f.text_field :date, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", id: "datepicker", placeholder: "Sélectionnez une date et une heure" %>
+    </div>
+
+    <!-- Champ "Nombre de convives" -->
+    <div class="relative mb-6">
+      <%= f.number_field :number_of_guests, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Nombre de convives" %>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <div class="text-center">
+      <%= f.submit "Réserver", class: "btn bg-primary-color text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-accent-color hover:shadow-2xl transition duration-300 cursor-pointer" %>
+    </div>
+
+  <% end %>
+</div>
+
+<!-- Inclusion de Flatpickr via CDN et initialisation -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    flatpickr("#datepicker", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      minDate: "today",
+      time_24hr: true
+    });
+  });
+</script>
