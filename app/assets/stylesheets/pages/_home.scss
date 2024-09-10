@@ -442,14 +442,21 @@ footer {
 
 
 // Carte Google Maps avec effet de zoom
+.iframe-container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+}
+
 iframe {
   border: none;
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 }
+
+iframe:hover {
+  transform: scale(1.05); /* Zoom sur survol */
+}
+
+
 
 // Responsive design
 @media (max-width: 768px) {
