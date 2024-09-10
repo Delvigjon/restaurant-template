@@ -1,0 +1,51 @@
+<div class="flex-container">
+  <div class="card-container">
+    <!-- Titre Menu -->
+    <h1 class="menu-title">Menu de la Semaine</h1>
+
+    <!-- Menu -->
+    <div class="menu-container">
+      <!-- Section Entrées -->
+      <div class="menu-category">
+        <h2>Entrées</h2>
+        <% @entrees.each do |dish| %>
+          <div class="menu-item">
+            <div>
+              <h3><%= dish.name %></h3>
+              <p><%= dish.description %></p>
+            </div>
+            <span><%= number_to_currency(dish.price) %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Section Plats -->
+      <div class="menu-category">
+        <h2>Plats</h2>
+        <% @plats.each do |dish| %>
+          <div class="menu-item">
+            <div>
+              <h3><%= dish.name %></h3>
+              <p><%= dish.description %></p>
+            </div>
+            <span><%= number_to_currency(dish.price) %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Section Desserts -->
+      <div class="menu-category">
+        <h2>Desserts</h2>
+        <% @desserts.each do |dish| %>
+          <div class="menu-item">
+            <div>
+              <h3><%= dish.name %></h3>
+              <p><%= dish.description %></p>
+            </div>
+            <span><%= number_to_currency(dish.price) %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

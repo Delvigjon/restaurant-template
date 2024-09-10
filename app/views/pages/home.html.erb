@@ -1,2 +1,66 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- Section "Notre Histoire" avec un fond sobre et animation d'apparition -->
+<section class="py-16 relative bg-light parallax-section">
+  <div class="container mx-auto px-6 text-center z-10 relative max-w-3xl">
+    <h2 class="text-4xl font-bold mb-8 text-white animate-fadeInUp">Le Restaurant La Table du Chef</h2>
+    <p class="text-lg text-white max-w-2xl mx-auto mb-8 animate-fadeInUp">
+      La Table du Chef, créé en 2015 par Alex et Marie Dupont, vous accueille du Lundi au Vendredi midi et le Vendredi soir dans un cadre moderne et chaleureux. Nous proposons une cuisine bistronomique ouverte sur le monde, généreuse et de saison.
+    </p>
+  </div>
+  <div class="parallax-image"></div>
+</section>
+
+<!-- Section "Réservation" avec des animations de carte -->
+<section class="py-16 bg-gray-50 relative">
+  <div class="container mx-auto px-6 text-center max-w-xl">
+    <h2 class="text-3xl font-bold mb-6 animate-fadeInUp">Réservez votre table</h2>
+    <p class="text-lg text-muted mb-6 animate-fadeInUp">Réservation par téléphone au <strong>01 23 45 67 89</strong></p>
+    <a href="tel:0123456789" class="btn-reservation bg-primary-color text-white py-3 px-6 rounded-lg font-bold hover:bg-accent-color transition duration-300 animate-popIn">
+      Réserver maintenant
+    </a>
+  </div>
+</section>
+
+<!-- Section "Accès et Services" avec des cartes animées au scroll -->
+<section class="py-16 bg-white relative overflow-hidden">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Accès et Services</h2>
+    <div class="flex flex-wrap justify-center space-y-6 md:space-y-0 md:space-x-6">
+      <!-- Carte 1: Parking -->
+      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
+        <div class="service-card">
+          <i class="fas fa-parking text-4xl text-primary-color mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Parking disponible</h3>
+          <p class="text-muted">Un parking est à votre disposition à proximité du restaurant.</p>
+        </div>
+      </div>
+      <!-- Carte 2: Accès -->
+      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
+        <div class="service-card">
+          <i class="fas fa-wheelchair text-4xl text-primary-color mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Accès facilité</h3>
+          <p class="text-muted">Accès facilité aux personnes à mobilité réduite.</p>
+        </div>
+      </div>
+      <!-- Carte 3: Paiement -->
+      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
+        <div class="service-card">
+          <i class="fas fa-credit-card text-4xl text-primary-color mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Paiement par ticket restaurant</h3>
+          <p class="text-muted">Nous acceptons les tickets restaurant pour votre plus grand confort.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section Carte Google Maps avec effet de zoom au survol -->
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-8">Nous trouver</h2>
+    <div class="flex justify-center">
+      <iframe class="w-full md:w-2/3 h-96 rounded-lg shadow-lg transition-transform duration-500 hover:scale-105"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9906782592246!2d2.294481415674387!3d48.858844179287446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fbd1f4f4f33%3A0x421a2d36544e8a0!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1634208589361!5m2!1sen!2sfr"
+        frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+  </div>
+</section>
