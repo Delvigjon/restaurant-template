@@ -1,0 +1,32 @@
+<div class="cookie"
+     data-controller="cookie-consent"
+     data-cookie-consent-target="banner"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Gestion des cookies"
+     hidden>
+  <div class="cookie__inner">
+    <div class="cookie__text">
+      <div class="cookie__title">Cookies</div>
+      <div class="cookie__desc">
+        Nous utilisons des cookies pour améliorer votre expérience, mesurer l’audience et sécuriser le site.
+        Vous pouvez accepter ou refuser.
+        <a class="cookie__link" href="<%= cookies_path %>">En savoir plus</a>
+      </div>
+    </div>
+
+    <div class="cookie__actions">
+      <button type="button"
+              class="btn cookie__btn cookie__btn--ghost"
+              data-action="click->cookie-consent#reject">
+        Refuser
+      </button>
+
+      <button type="button"
+              class="btn cookie__btn cookie__btn--primary"
+              data-action="click->cookie-consent#accept">
+        Accepter
+      </button>
+    </div>
+  </div>
+</div>
