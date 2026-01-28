@@ -1,0 +1,114 @@
+/* =========================================================
+   scss/pages/_menu.scss
+   Menu page (IMPORTANT: page-scoped pour éviter collisions)
+   Ajoute class au body ou wrapper: .menu-page
+   ========================================================= */
+.menu-page .flex-container{
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.menu-page .card-container--menu{
+  width: 100%;
+  max-width: 900px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 48px 48px 56px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  position: relative;
+}
+
+/* Logo */
+.menu-page .menu-logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.menu-page .menu-logo img{
+  width: 80px;
+  height: 80px;
+  transform: scale(1.9);
+}
+
+.menu-page .menu-logo__tagline{
+  margin-top: 50px;
+  font-size: .8rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+}
+
+.menu-page .menu-logo::after{
+  content:"";
+  width: 220px;
+  height: 1px;
+  margin-top: 18px;
+  background: linear-gradient(90deg, transparent, rgba(201,164,106,.6), transparent);
+}
+
+/* Title */
+.menu-page .menu-title{
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  text-align: center;
+  color: var(--gold);
+  margin: 32px 0 48px;
+  letter-spacing: .05em;
+}
+
+/* Sections */
+.menu-page .menu-container{ display: grid; gap: 48px; }
+
+.menu-page .menu-category__title{
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  color: var(--text);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Item */
+.menu-page .menu-item{
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px dashed rgba(255,255,255,.12);
+}
+.menu-page .menu-item:last-child{ border-bottom: none; }
+
+.menu-page .menu-item__text h3{
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.menu-page .menu-item__text p{
+  margin: 0;
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.45;
+  max-width: 520px;
+}
+
+.menu-page .menu-item__price{
+  font-weight: 650;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  .menu-page .card-container--menu{ padding: 36px 20px 40px; }
+  .menu-page .menu-title{ font-size: 30px; }
+  .menu-page .menu-item{ flex-direction: column; gap: 6px; }
+  .menu-page .menu-item__price{ align-self: flex-start; }
+  .menu-page .menu-logo img{ width: 160px; transform: none; }
+}
