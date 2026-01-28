@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:home, :menu, :contact, :reservation, :create_reservation]
+  before_action :authenticate_user!, except: [
+    :home, :menu, :contact, :reservation, :create_reservation,
+    :mentions_legales, :cookies, :politique_confidentialite
+  ]
 
   def home; end
 
@@ -25,6 +28,10 @@ class PagesController < ApplicationController
       render :reservation, status: :unprocessable_entity
     end
   end
+
+  def mentions_legales; end
+  def cookies; end
+  def politique_confidentialite; end
 
   private
 

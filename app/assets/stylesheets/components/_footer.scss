@@ -3,7 +3,6 @@
    ========================================================= */
 .container.footer__grid{max-width: 1400px;}
 .footer{
-  border-top: 1px solid var(--line);
   background: #0a0b0d;
   padding-top: 56px;
 }
@@ -160,8 +159,6 @@
 
 .footer__credit:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,.06);
-  border-color: rgba(201,164,106,.30);
 }
 
 .footer__creditLogo{
