@@ -1,70 +1,197 @@
-<!-- Section "Notre Histoire" avec un fond sobre et animation d'apparition -->
-<section class="parallax-section py-20 relative bg-dark text-white">
-  <div class="container mx-auto text-center relative z-10">
-    <h2 class="text-5xl font-extrabold mb-6 animate-fadeInUp">Bienvenue à La Table du Chef</h2>
-    <p class="text-lg max-w-2xl mx-auto mb-10 leading-relaxed animate-fadeInUp delay-1s">
-      Depuis 2015, Alex et Marie Dupont vous accueillent dans leur restaurant bistronomique, où la cuisine ouverte sur le monde
-      se mêle à des produits de saison dans une ambiance chaleureuse et moderne. Venez découvrir une expérience culinaire unique du
-      Lundi au Vendredi midi et le Vendredi soir.
-    </p>
-    <a href="#reservation" class="btn btn-primary animate-fadeInUp delay-2s">Réservez dès maintenant</a>
-  </div>
-  <div class="parallax-image"></div>
-</section>
+<section class="section section--story">
+  <div class="container grid-2">
+    <div class="story__media">
+      <img src="<%= asset_path('chef.webp') %>" alt="Le chef en cuisine" loading="lazy">
+    </div>
 
+    <div class="story__content">
+      <p class="eyebrow">Notre histoire</p>
+      <h2 class="h2">Une cuisine de saison, un geste précis</h2>
+      <p class="p">
+        Depuis 2015, nous cuisinons une bistronomie moderne : produits frais, sauces nettes,
+        cuissons maîtrisées, et une carte qui change régulièrement.
+      </p>
+      <p class="p">
+        Ici, l’expérience compte autant que l’assiette : accueil, rythme du service, accords mets & vins.
+      </p>
 
-
-<!-- Section "Accès et Services" avec des cartes animées au scroll -->
-<!-- Section "Accès et Services" avec des cartes animées au scroll -->
-<section class="py-16 relative overflow-hidden">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-8">Accès et Services</h2>
-    <div class="flex flex-wrap justify-center space-y-6 md:space-y-0 md:space-x-6">
-      <!-- Carte 1: Parking -->
-      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
-        <div class="service-card bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-          <i class="fas fa-parking text-4xl text-primary-color mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Parking disponible</h3>
-          <p class="text-muted">Un parking est à votre disposition à proximité du restaurant.</p>
-        </div>
-      </div>
-      <!-- Carte 2: Accès -->
-      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
-        <div class="service-card bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-          <i class="fas fa-wheelchair text-4xl text-primary-color mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Accès facilité</h3>
-          <p class="text-muted">Accès facilité aux personnes à mobilité réduite.</p>
-        </div>
-      </div>
-      <!-- Carte 3: Paiement -->
-      <div class="w-full md:w-1/3 p-4 animate-fadeInScroll">
-        <div class="service-card bg-white rounded-lg shadow-lg p-6 flex flex-col justify-center items-center text-center">
-          <i class="fas fa-credit-card text-4xl text-primary-color mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Paiement par ticket restaurant</h3>
-          <p class="text-muted">Nous acceptons les tickets restaurant pour votre plus grand confort.</p>
-        </div>
-      </div>
+      <a class="text-link" href="<%= menu_path %>">Voir la carte →</a>
     </div>
   </div>
 </section>
 
-
-<!-- Section Carte Google Maps avec effet de zoom au survol -->
-<section class="bg-dark  py-20 bg-gray-50">
-  <div class="container  mx-auto px-6">
-    <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-8">Nous trouver</h2>
-    <p class="text-center text-gray-600 mb-4">Venez nous rendre visite à notre bureau situé près de la Tour Eiffel.</p>
-    <div class="iframe-container flex justify-center">
-      <iframe class="w-full md:w-2/3 lg:w-1/2 h-96 rounded-lg shadow-xl"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9906782592246!2d2.294481415674387!3d48.858844179287446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fbd1f4f4f33%3A0x421a2d36544e8a0!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1634208589361!5m2!1sen!2sfr"
-        frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Galerie</p>
+      <h2 class="h2">L’ambiance & quelques assiettes</h2>
+      <p class="p p--muted">Cuisine, salle, boissons — un aperçu de l’expérience.</p>
     </div>
-    <div class="text-center mt-6">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=48.858844,2.294481" target="_blank"
-        class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
-        Obtenir un itinéraire
+
+    <div class="gallery">
+      <a class="gallery__item gallery__item--wide" href="<%= asset_path('restaurant.webp') %>">
+        <img src="<%= asset_path('restaurant.webp') %>" alt="Ambiance du restaurant" loading="lazy">
+      </a>
+
+      <a class="gallery__item" href="<%= asset_path('restaurant-dish-signature-1.webp') %>">
+        <img src="<%= asset_path('restaurant-dish-signature-1.webp') %>" alt="Plat signature" loading="lazy">
+      </a>
+
+      <a class="gallery__item" href="<%= asset_path('restaurant-dish-signature-2.webp') %>">
+        <img src="<%= asset_path('restaurant-dish-signature-2.webp') %>" alt="Plat signature" loading="lazy">
+      </a>
+
+      <a class="gallery__item" href="<%= asset_path('restaurant-wine-cellar.webp') %>">
+        <img src="<%= asset_path('restaurant-wine-cellar.webp') %>" alt="Cave à vin" loading="lazy">
+      </a>
+
+      <a class="gallery__item" href="<%= asset_path('restaurant-cocktail.webp') %>">
+        <img src="<%= asset_path('restaurant-cocktail.webp') %>" alt="Cocktail" loading="lazy">
       </a>
     </div>
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">La carte</p>
+      <h2 class="h2">Quelques signatures</h2>
+      <p class="p p--muted">Une sélection qui évolue selon arrivages et saisons.</p>
+    </div>
+
+    <div class="cards">
+      <article class="dish">
+        <h3 class="dish__title">Entrée du moment</h3>
+        <p class="dish__desc">Fraîcheur, équilibre, et un twist végétal.</p>
+        <p class="dish__meta">À partir de 12€</p>
+      </article>
+
+      <article class="dish">
+        <h3 class="dish__title">Plat signature</h3>
+        <p class="dish__desc">Cuisson juste, sauce courte, accompagnement de saison.</p>
+        <p class="dish__meta">À partir de 24€</p>
+      </article>
+
+      <article class="dish">
+        <h3 class="dish__title">Dessert maison</h3>
+        <p class="dish__desc">Gourmandise maîtrisée, sans lourdeur.</p>
+        <p class="dish__meta">À partir de 9€</p>
+      </article>
+    </div>
+
+    <div class="section__cta">
+      <a class="btn btn--primary" href="<%= menu_path %>">Voir le menu complet</a>
+    </div>
+  </div>
+</section>
+<section class="section section--infos">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Infos pratiques</p>
+      <h2 class="h2">Accès & services</h2>
+      <p class="p p--muted">Tout ce qu’il faut pour venir l’esprit léger.</p>
+    </div>
+
+    <ul class="info-list info-list--rich">
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-square-parking"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Parking</span>
+          <span class="info__value">À proximité immédiate</span>
+          <span class="info__hint">Rue / parking public à 2 min à pied.</span>
+        </div>
+      </li>
+
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-wheelchair"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Accessibilité</span>
+          <span class="info__value">Accès PMR</span>
+          <span class="info__hint">Salle & sanitaires accessibles.</span>
+        </div>
+      </li>
+
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-credit-card"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Paiement</span>
+          <span class="info__value">CB, espèces, titres restaurant</span>
+          <span class="info__hint">Tickets acceptés le midi.</span>
+        </div>
+      </li>
+
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-clock"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Horaires</span>
+          <span class="info__value">Lun–Ven : 12:00–14:00 · Ven : 19:00–22:00</span>
+          <span class="info__hint">Fermé le week-end (sur privatisation : nous contacter).</span>
+        </div>
+      </li>
+
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-utensils"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Allergènes</span>
+          <span class="info__value">Informations sur demande</span>
+          <span class="info__hint">Options végétariennes selon arrivages.</span>
+        </div>
+      </li>
+
+      <li class="info info--rich">
+        <span class="info__icon" aria-hidden="true">
+          <i class="fa-solid fa-calendar-check"></i>
+        </span>
+        <div class="info__body">
+          <span class="info__label">Réservation</span>
+          <span class="info__value">Conseillée</span>
+          <span class="info__hint">Groupes : merci d’anticiper (menu dédié possible).</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="section__cta">
+      <a class="btn btn--primary" href="#reservation">Réserver une table</a>
+      <a class="btn btn--ghost" href="tel:0123456789">Appeler</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Nous trouver</p>
+      <h2 class="h2">Adresse & itinéraire</h2>
+      <p class="p p--muted">Réservation recommandée.</p>
+    </div>
+
+    <div class="map">
+  <iframe
+    class="map__iframe"
+    src="https://www.google.com/maps?q=Place%20Stanislas%2C%20Nancy&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
+</div>
+
+<div class="section__cta">
+  <a class="btn btn--ghost"
+     href="https://www.google.com/maps/dir/?api=1&destination=Place%20Stanislas%2C%20Nancy"
+     target="_blank" rel="noopener">
+    Obtenir un itinéraire
+  </a>
+</div>
+
+</section>

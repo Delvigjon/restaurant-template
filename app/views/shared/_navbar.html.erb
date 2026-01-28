@@ -1,22 +1,119 @@
-    <header class="header-banner" style="background-image: url('<%= asset_path('restaurant.jpg') %>');">
-      <!-- Navbar -->
-      <div class="navbar">
-        <div class="navbar-logo">Mon Restaurant</div>
-        <div class="navbar-links">
-          <%= link_to "Accueil", root_path, class: "hover:text-accent-color" %>
-          <%= link_to "Menu", menu_path, class: "hover:text-accent-color" %>
-          <%= link_to "Réserver", reservation_path, class: "hover:text-accent-color" %>
-          <%= link_to "Contact", contact_path, class: "hover:text-accent-color" %>
+<header class="hero" style="--hero-img:url('<%= asset_path('restaurant.webp') %>');"
+        data-controller="mobile-nav"
+        data-action="keydown@window->mobile-nav#esc">
+
+  <nav class="nav">
+    <a class="nav__brand" href="<%= root_path %>">
+      <img
+        src="<%= asset_path('logo-la-table-du-chef.webp') %>"
+        alt="La Table du Chef"
+        class="nav__brandLogo"
+        width="44"
+        height="44"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="nav__brandText">
+        <span class="nav__logo">La Table du Chef</span>
+        <span class="nav__tagline">Bistronomie • Saison • Nancy</span>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="nav__links nav__links--desktop">
+      <%= link_to "Accueil", root_path, class: "nav__link" %>
+      <%= link_to "Menu", menu_path, class: "nav__link" %>
+      <%= link_to "Réserver", reservation_path, class: "nav__link nav__link--cta" %>
+      <%= link_to "Contact", contact_path, class: "nav__link" %>
+    </div>
+
+    <!-- Burger (mobile) -->
+    <button type="button"
+        class="nav__burger"
+        aria-label="Ouvrir le menu"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+        data-mobile-nav-target="burger"
+        data-action="click->mobile-nav#open">
+  <svg class="nav__burgerIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="mnav"
+       id="mobileMenu"
+       hidden
+       data-mobile-nav-target="panel"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Menu principal">
+
+    <div class="mnav__overlay" data-action="click->mobile-nav#close"></div>
+
+    <div class="mnav__sheet" data-mobile-nav-target="sheet">
+      <div class="mnav__top">
+        <div class="mnav__brand">
+          <img
+            src="<%= asset_path('logo-la-table-du-chef.webp') %>"
+            alt=""
+            class="mnav__logo"
+            width="40"
+            height="40"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="mnav__brandText">
+            <div class="mnav__name">La Table du Chef</div>
+            <div class="mnav__city">Nancy</div>
+          </div>
         </div>
+
+        <button type="button"
+                class="mnav__close"
+                aria-label="Fermer le menu"
+                data-action="click->mobile-nav#close">
+          ✕
+        </button>
       </div>
 
-      <!-- Contenu de la bannière -->
-      <div class="header-content">
-        <h1>Bienvenue chez <span class="text-red-400">[Nom du Restaurant]</span></h1>
-        <p>Découvrez notre cuisine raffinée et réservez une table dès aujourd'hui !</p>
-        <div class="btn-group">
-          <a href="<%= menu_path %>" class="btn">Voir le Menu</a>
-          <a href="<%= reservation_path %>" class="btn">Réserver une Table</a>
-        </div>
+      <div class="mnav__links">
+        <%= link_to "Accueil", root_path, class: "mnav__link", data: { action: "click->mobile-nav#close" } %>
+        <%= link_to "Menu", menu_path, class: "mnav__link", data: { action: "click->mobile-nav#close" } %>
+        <%= link_to "Réserver", reservation_path, class: "mnav__link mnav__link--cta", data: { action: "click->mobile-nav#close" } %>
+        <%= link_to "Contact", contact_path, class: "mnav__link", data: { action: "click->mobile-nav#close" } %>
       </div>
-    </header>
+
+      <div class="mnav__meta">
+        <div class="mnav__metaLine">Ouvert : Lun–Ven midi • Ven soir</div>
+        <div class="mnav__metaLine">Parking à proximité • Accès PMR</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__overlay"></div>
+
+  <div class="hero__content">
+    <p class="hero__kicker">Restaurant bistronomique</p>
+    <h1 class="hero__title">
+      La Table du Chef
+      <span class="hero__subtitle">Cuisine de saison, élégante et vivante</span>
+    </h1>
+
+    <p class="hero__lead">
+      Une table chaleureuse, des produits sélectionnés, et une carte qui évolue au fil des semaines.
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="<%= reservation_path %>">Réserver</a>
+      <a class="btn btn--ghost" href="<%= menu_path %>">Découvrir le menu</a>
+    </div>
+
+    <div class="hero__meta">
+      <span>Ouvert : Lun–Ven midi • Ven soir</span>
+      <span>Parking à proximité • Accès PMR</span>
+    </div>
+  </div>
+</header>

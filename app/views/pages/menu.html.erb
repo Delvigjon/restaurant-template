@@ -1,51 +1,105 @@
-<div class="flex-container">
-  <div class="card-container">
-    <!-- Titre Menu -->
-    <h1 class="menu-title">Menu de la Semaine</h1>
+<div class="menu-page">
+  <div class="flex-container">
+    <div class="card-container card-container--menu">
 
-    <!-- Menu -->
-    <div class="menu-container">
-      <!-- Section Entrées -->
-      <div class="menu-category">
-        <h2>Entrées</h2>
-        <% @entrees.each do |dish| %>
-          <div class="menu-item">
-            <div>
-              <h3><%= dish.name %></h3>
-              <p><%= dish.description %></p>
-            </div>
-            <span><%= number_to_currency(dish.price, unit: "€") %></span>
-          </div>
-        <% end %>
+      <!-- Logo restaurant -->
+      <div class="menu-logo">
+        <img
+          src="<%= asset_path('logo-la-table-du-chef.webp') %>"
+          alt="La Table du Chef"
+          loading="lazy"
+        >
+        <p class="menu-logo__tagline">
+          Bistronomie • Saison • Nancy
+        </p>
       </div>
 
-      <!-- Section Plats -->
-      <div class="menu-category">
-        <h2>Plats</h2>
-        <% @plats.each do |dish| %>
-          <div class="menu-item">
-            <div>
-              <h3><%= dish.name %></h3>
-              <p><%= dish.description %></p>
-            </div>
-            <span><%= number_to_currency(dish.price, unit: "€") %></span>
-          </div>
-        <% end %>
-      </div>
+      <!-- Titre du menu -->
+      <h1 class="menu-title">
+        Menu de la semaine
+      </h1>
 
-      <!-- Section Desserts -->
-      <div class="menu-category">
-        <h2>Desserts</h2>
-        <% @desserts.each do |dish| %>
-          <div class="menu-item">
-            <div>
-              <h3><%= dish.name %></h3>
-              <p><%= dish.description %></p>
+      <!-- Contenu du menu -->
+      <div class="menu-container">
+
+        <!-- ======================
+             Entrées
+             ====================== -->
+        <section class="menu-category">
+          <h2 class="menu-category__title">Entrées</h2>
+
+          <% @entrees.each do |dish| %>
+            <div class="menu-item">
+              <div class="menu-item__text">
+                <h3><%= dish.name %></h3>
+                <p><%= dish.description %></p>
+              </div>
+
+              <span class="menu-item__price">
+                <%= number_to_currency(
+                      dish.price,
+                      unit: "€",
+                      format: "%n %u",
+                      precision: 0
+                ) %>
+              </span>
             </div>
-            <span><%= number_to_currency(dish.price, unit: "€") %></span>
-          </div>
-        <% end %>
+          <% end %>
+        </section>
+
+        <!-- ======================
+             Plats
+             ====================== -->
+        <section class="menu-category">
+          <h2 class="menu-category__title">Plats</h2>
+
+          <% @plats.each do |dish| %>
+            <div class="menu-item">
+              <div class="menu-item__text">
+                <h3><%= dish.name %></h3>
+                <p><%= dish.description %></p>
+              </div>
+
+              <span class="menu-item__price">
+                <%= number_to_currency(
+                      dish.price,
+                      unit: "€",
+                      format: "%n %u",
+                      precision: 0
+                ) %>
+              </span>
+            </div>
+          <% end %>
+        </section>
+
+        <!-- ======================
+             Desserts
+             ====================== -->
+        <section class="menu-category">
+          <h2 class="menu-category__title">Desserts</h2>
+
+          <% @desserts.each do |dish| %>
+            <div class="menu-item">
+              <div class="menu-item__text">
+                <h3><%= dish.name %></h3>
+                <p><%= dish.description %></p>
+              </div>
+
+              <span class="menu-item__price">
+                <%= number_to_currency(
+                      dish.price,
+                      unit: "€",
+                      format: "%n %u",
+                      precision: 0
+                ) %>
+              </span>
+            </div>
+          <% end %>
+        </section>
+
       </div>
+      <!-- /menu-container -->
+
     </div>
   </div>
 </div>

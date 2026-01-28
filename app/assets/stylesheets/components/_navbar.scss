@@ -1,12 +1,244 @@
-.navbar-lewagon {
+/* =========================================================
+   NAV — DESKTOP
+   ========================================================= */
+
+.nav{
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94%;
+  max-width: 1180px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background: white;
+  padding: 14px 16px;
+  z-index: 3;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+/* ===== Desktop par défaut ===== */
+.nav__burger{
+  display: none;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.nav__links--desktop{
+  display: flex;
+}
+
+/* ===== Brand ===== */
+.nav__brand{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav__brandLogo{
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  display: block;
+}
+
+.nav__brandText{
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav__logo{
+  font-weight: 700;
+}
+
+.nav__tagline{
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+/* ===== Links desktop ===== */
+.nav__links--desktop{
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nav__link{
+  color: rgba(255,255,255,.86);
+  text-decoration: none;
+  font-size: .95rem;
+  padding: 10px 12px;
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.nav__link:hover{
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.nav__link--cta{
+  border: 1px solid rgba(201,164,106,.55);
+  background: rgba(201,164,106,.10);
+}
+
+.nav__link--cta:hover{
+  background: rgba(201,164,106,.18);
+}
+
+/* ===== Ajustements tablette ===== */
+@media (max-width: 900px){
+  .nav__tagline{ display: none; }
+  .nav__links--desktop{ gap: 8px; }
+  .nav__link{ padding: 10px; }
+}
+
+/* =========================================================
+   MOBILE NAV — styles only
+   ========================================================= */
+
+/* ===== Burger (styles uniquement) ===== */
+.nav__burger{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__burgerIcon{
+  width: 22px;
+  height: 22px;
+  color: rgba(255,255,255,.92);
+  display: block;
+}
+
+/* ===== Fullscreen menu ===== */
+.mnav{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.mnav__overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.62);
+}
+
+.mnav__sheet{
+  position: absolute;
+  inset: 0;
+  background: rgba(12,13,16,.98);
+  padding: 18px 18px 22px;
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+  overflow: auto;
+}
+
+.mnav.is-open .mnav__sheet{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===== Top ===== */
+.mnav__top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mnav__brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mnav__logo{
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.mnav__name{
+  color: rgba(255,255,255,.92);
+  font-weight: 750;
+}
+
+.mnav__city{
+  color: rgba(255,255,255,.60);
+  font-size: .9rem;
+}
+
+.mnav__close{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* ===== Links ===== */
+.mnav__links{
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mnav__link{
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.92);
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.mnav__link--cta{
+  background: linear-gradient(180deg, #c9a46a, #b9914f);
+  color: #0b0c0f;
+}
+
+/* ===== Meta ===== */
+.mnav__meta{
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  color: rgba(255,255,255,.62);
+  font-size: .92rem;
+}
+
+/* ===== Activation mobile uniquement ===== */
+@media (max-width: 860px){
+  .nav__burger{
+    display: inline-flex;
+  }
+
+  .nav__links--desktop{
+    display: none;
+  }
+}
+
+/* Sécurité desktop */
+@media (min-width: 861px){
+  .nav__burger{
+    display: none !important;
+  }
 }

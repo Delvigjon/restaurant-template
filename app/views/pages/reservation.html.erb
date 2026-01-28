@@ -1,54 +1,133 @@
-<div class="flex-container">
-  <%= form_with model: @reservation, url: create_reservation_path, local: true, class: "reservation-form max-w-lg mx-auto bg-white p-10 rounded-xl shadow-lg text-center" do |f| %>
+<div class="reservation-page" data-controller="reservation">
+  <div class="reservation-page__wrap">
+    <div class="rs-card">
 
-    <!-- Titre centré -->
-    <h1 class="text-4xl font-bold mb-8 text-primary-color">Réservez une table</h1>
+      <div class="rs-head">
+        <h1 class="rs-title">Réserver une table</h1>
+        <p class="rs-subtitle">
+          Réservation recommandée — réponse rapide par e-mail.
+        </p>
+      </div>
 
-    <!-- Champ "Nom" -->
-    <div class="relative mb-6">
-      <%= f.text_field :name, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Nom" %>
+      <%= form_with model: @reservation,
+                    url: create_reservation_path,
+                    data: { turbo: true },
+                    class: "rs-form" do |f| %>
+
+        <div class="rs-grid">
+
+          <div class="rs-field">
+            <%= f.label :name, "Nom", class: "rs-label" %>
+            <%= f.text_field :name,
+                  class: "rs-input",
+                  placeholder: "Votre nom" %>
+          </div>
+
+          <div class="rs-field">
+            <%= f.label :email, "Email", class: "rs-label" %>
+            <%= f.email_field :email,
+                  class: "rs-input",
+                  placeholder: "nom@domaine.fr" %>
+          </div>
+
+          <div class="rs-field">
+            <%= f.label :phone, "Téléphone", class: "rs-label" %>
+            <%= f.telephone_field :phone,
+                  class: "rs-input",
+                  placeholder: "06 00 00 00 00" %>
+          </div>
+
+          <div class="rs-field">
+            <%= f.label :number_of_guests, "Nombre de convives", class: "rs-label" %>
+            <%= f.number_field :number_of_guests,
+                  class: "rs-input",
+                  min: 1,
+                  max: 12,
+                  placeholder: "2" %>
+            <p class="rs-hint">
+              Pour plus de 12 personnes, contactez-nous directement.
+            </p>
+          </div>
+
+          <!-- Datepicker INLINE (toujours visible, pas de popover) -->
+          <div class="rs-field rs-field--full"
+               data-controller="reservation-datepicker"
+               data-reservation-datepicker-max-days-value="21">
+
+            <label class="rs-label" for="reservation_date_display">
+              Date & heure
+            </label>
+
+            <input
+              id="reservation_date_display"
+              type="text"
+              class="rs-input"
+              placeholder="Sélectionnez une date puis une heure"
+              autocomplete="off"
+              readonly
+              data-reservation-datepicker-target="display"
+            />
+
+            <%= f.hidden_field :date,
+                  id: "reservation_date",
+                  data: { reservation_datepicker_target: "hidden" } %>
+
+            <div class="rs-cal rs-cal--inline"
+                 data-reservation-datepicker-target="popover"
+                 role="region"
+                 aria-label="Calendrier de réservation">
+
+              <div class="rs-cal__head">
+                <button type="button"
+                        class="rs-cal__nav"
+                        data-action="reservation-datepicker#prevMonth"
+                        aria-label="Mois précédent">‹</button>
+
+                <div class="rs-cal__title" data-reservation-datepicker-target="title"></div>
+
+                <button type="button"
+                        class="rs-cal__nav"
+                        data-action="reservation-datepicker#nextMonth"
+                        aria-label="Mois suivant">›</button>
+              </div>
+
+              <div class="rs-cal__dow" aria-hidden="true">
+                <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+              </div>
+
+              <div class="rs-cal__grid"
+                   role="grid"
+                   data-reservation-datepicker-target="days"></div>
+
+              <div class="rs-cal__time">
+                <p class="rs-cal__timeLabel">Heure</p>
+                <div class="rs-cal__slots" data-reservation-datepicker-target="slots"></div>
+                <p class="rs-cal__hint">Créneaux disponibles sur les 21 prochains jours.</p>
+              </div>
+
+              <div class="rs-cal__actions">
+                <button type="button"
+                        class="rs-cal__btn rs-cal__btn--ghost"
+                        data-action="reservation-datepicker#clear">Effacer</button>
+
+                <button type="button"
+                        class="rs-cal__btn rs-cal__btn--primary"
+                        data-action="reservation-datepicker#pickToday">Aujourd’hui</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="rs-actions">
+          <%= f.submit "Réserver", class: "rs-btn rs-btn--primary rs-btn--wide" %>
+          <p class="rs-note">
+            En validant, vous acceptez d’être recontacté pour confirmation.
+          </p>
+        </div>
+
+      <% end %>
     </div>
-
-    <!-- Champ "Email" -->
-    <div class="relative mb-6">
-      <%= f.email_field :email, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Email" %>
-    </div>
-
-    <!-- Champ "Téléphone" -->
-    <div class="relative mb-6">
-      <%= f.telephone_field :phone, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Téléphone" %>
-    </div>
-
-    <!-- Champ "Date et Heure" avec Flatpickr -->
-    <div class="relative mb-6">
-      <%= f.label :date, "Date et Heure", class: "block text-lg font-semibold mb-2 text-gray-700" %>
-      <%= f.text_field :date, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", id: "datepicker", placeholder: "Sélectionnez une date et une heure" %>
-    </div>
-
-    <!-- Champ "Nombre de convives" -->
-    <div class="relative mb-6">
-      <%= f.number_field :number_of_guests, class: "form-input w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color focus:border-transparent transition duration-300", placeholder: "Nombre de convives" %>
-    </div>
-
-    <!-- Bouton de soumission -->
-    <div class="text-center">
-      <%= f.submit "Réserver", class: "btn bg-primary-color text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-accent-color hover:shadow-2xl transition duration-300 cursor-pointer" %>
-    </div>
-
-  <% end %>
+  </div>
 </div>
-
-<!-- Inclusion de Flatpickr via CDN et initialisation -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    flatpickr("#datepicker", {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      minDate: "today",
-      time_24hr: true
-    });
-  });
-</script>
