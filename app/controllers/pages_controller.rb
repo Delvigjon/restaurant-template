@@ -6,11 +6,19 @@ class PagesController < ApplicationController
 
   def home; end
 
-  def menu
-    @entrees  = Dish.where(category: "Entrée")
-    @plats    = Dish.where(category: "Plat")
-    @desserts = Dish.where(category: "Dessert")
-  end
+def menu
+  @entrees   = Dish.where(category: "Entrée").order(:id)
+  @plats     = Dish.where(category: "Plat").order(:id)
+  @desserts  = Dish.where(category: "Dessert").order(:id)
+
+  @cocktails = Dish.where(category: "Cocktail").order(:id) || []
+
+  @boissons  = Dish.where(category: "Boisson").order(:id)
+end
+
+
+
+
 
   def contact; end
   def about; end

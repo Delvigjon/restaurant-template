@@ -1,4 +1,4 @@
-<div id="contact" class="flex-container">
+<div id="contact" class="contact-page">
   <div class="card-container card-container--contact">
 
     <header class="contact-head">
@@ -8,12 +8,13 @@
       </p>
     </header>
 
-    <div class="contact-grid">
+    <!-- =========================
+         COORDONNÉES — FULL WIDTH (TOP)
+         ========================= -->
+    <section class="contact-panel contact-panel--full">
+      <h2 class="contact-panel__title">Coordonnées</h2>
 
-      <!-- Infos -->
-      <aside class="contact-panel">
-        <h2 class="contact-panel__title">Coordonnées</h2>
-
+      <div class="contact-rows">
         <div class="contact-row">
           <span class="contact-ico" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
           <div class="contact-row__body">
@@ -41,140 +42,204 @@
             </p>
           </div>
         </div>
+      </div>
 
-        <div class="contact-divider"></div>
+      <div class="contact-divider"></div>
 
-        <div class="contact-badges">
-          <span class="contact-badge"><i class="fa-solid fa-door-open" aria-hidden="true"></i> Privatisation</span>
-          <span class="contact-badge"><i class="fa-solid fa-champagne-glasses" aria-hidden="true"></i> Événements</span>
-          <span class="contact-badge"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Menus sur-mesure</span>
-          <span class="contact-badge"><i class="fa-solid fa-users" aria-hidden="true"></i> Groupes</span>
-        </div>
+      <div class="contact-badges">
+        <span class="contact-badge"><i class="fa-solid fa-door-open" aria-hidden="true"></i> Privatisation</span>
+        <span class="contact-badge"><i class="fa-solid fa-champagne-glasses" aria-hidden="true"></i> Événements</span>
+        <span class="contact-badge"><i class="fa-solid fa-utensils" aria-hidden="true"></i> Menus sur-mesure</span>
+        <span class="contact-badge"><i class="fa-solid fa-users" aria-hidden="true"></i> Groupes</span>
+      </div>
 
-        <p class="contact-note">
-          Pour une demande urgente (jour J), privilégie le téléphone.
-        </p>
-      </aside>
+      <p class="contact-note">
+        Pour une demande urgente (jour J), privilégie le téléphone.
+      </p>
+    </section>
 
-      <!-- Form -->
-      <section class="contact-formWrap">
-        <h2 class="contact-formTitle">Demande spécifique</h2>
-        <p class="contact-formHint">Décris ton besoin (date, nombre de personnes, contraintes…).</p>
+    <!-- =========================
+         FORMULAIRE — FULL WIDTH (BELOW)
+         ========================= -->
+    <section class="contact-formWrap contact-formWrap--full">
+      <h2 class="contact-formTitle">Demande spécifique</h2>
+      <p class="contact-formHint">Décris ton besoin (date, nombre de personnes, contraintes…).</p>
 
-        <%= form_with url: contact_path, method: :post, data: { turbo: true }, class: "contact-form" do %>
+      <%= form_with url: contact_path, method: :post, data: { turbo: true }, class: "contact-form" do %>
 
-          <div class="form-grid">
-            <div class="field">
-              <%= label_tag :name, "Nom", class: "field__label" %>
-              <%= text_field_tag :name, nil, class: "field__input", placeholder: "Votre nom", required: true %>
+        <div class="form-grid">
+          <div class="field">
+            <%= label_tag :name, "Nom", class: "field__label" %>
+            <%= text_field_tag :name, nil, class: "field__input", placeholder: "Votre nom", required: true %>
+          </div>
+
+          <div class="field">
+            <%= label_tag :email, "Email", class: "field__label" %>
+            <%= email_field_tag :email, nil, class: "field__input", placeholder: "nom@domaine.fr", required: true %>
+          </div>
+
+          <div class="field">
+            <%= label_tag :phone, "Téléphone", class: "field__label" %>
+            <%= telephone_field_tag :phone, nil, class: "field__input", placeholder: "06 00 00 00 00" %>
+          </div>
+
+          <!-- =========================
+               CUSTOM SELECT (uniquement pour styliser la liste ouverte)
+               ========================= -->
+          <div class="field"
+               data-controller="tw-select"
+               data-tw-select-default-label-value="Privatisation"
+               data-tw-select-default-value-value="privatisation">
+
+            <%= label_tag :request_type, "Type de demande", class: "field__label" %>
+
+            <!-- valeur envoyée -->
+            <%= hidden_field_tag :request_type, "privatisation", data: { tw_select_target: "hidden" } %>
+
+            <!-- bouton style input -->
+            <button type="button"
+                    class="field__input field__select tw-select__btn"
+                    data-action="tw-select#toggle"
+                    data-tw-select-target="button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false">
+              <span class="tw-select__label" data-tw-select-target="label">Privatisation</span>
+              <span class="tw-select__chev" aria-hidden="true"></span>
+            </button>
+
+            <!-- menu -->
+            <div class="tw-select__menu"
+                 role="listbox"
+                 tabindex="-1"
+                 hidden
+                 data-tw-select-target="menu">
+
+              <button type="button" class="tw-select__opt is-active" role="option"
+                      data-action="tw-select#pick"
+                      data-value="privatisation">
+                Privatisation
+              </button>
+
+              <button type="button" class="tw-select__opt" role="option"
+                      data-action="tw-select#pick"
+                      data-value="evenement">
+                Événement (pro / asso)
+              </button>
+
+              <button type="button" class="tw-select__opt" role="option"
+                      data-action="tw-select#pick"
+                      data-value="famille">
+                Anniversaire / famille
+              </button>
+
+              <button type="button" class="tw-select__opt" role="option"
+                      data-action="tw-select#pick"
+                      data-value="special">
+                Demande spéciale (allergies, menu)
+              </button>
+
+              <button type="button" class="tw-select__opt" role="option"
+                      data-action="tw-select#pick"
+                      data-value="autre">
+                Autre
+              </button>
             </div>
+          </div>
 
-            <div class="field">
-              <%= label_tag :email, "Email", class: "field__label" %>
-              <%= email_field_tag :email, nil, class: "field__input", placeholder: "nom@domaine.fr", required: true %>
-            </div>
+          <!-- =========================
+               DATEPICKER INLINE (TOGGLE)
+               ========================= -->
+          <div class="field field--full"
+               data-controller="tw-datepicker"
+               data-tw-datepicker-max-days-value="365"
+               data-tw-datepicker-show-time-value="false">
 
-            <div class="field">
-              <%= label_tag :phone, "Téléphone", class: "field__label" %>
-              <%= telephone_field_tag :phone, nil, class: "field__input", placeholder: "06 00 00 00 00" %>
-            </div>
+            <label class="field__label" for="contact_date_display">
+              Date souhaitée (optionnel)
+            </label>
 
-            <div class="field">
-              <%= label_tag :request_type, "Type de demande", class: "field__label" %>
-              <%= select_tag :request_type,
-                    options_for_select([
-                      ["Privatisation", "privatisation"],
-                      ["Événement (pro / asso)", "evenement"],
-                      ["Anniversaire / famille", "famille"],
-                      ["Demande spéciale (allergies, menu)", "special"],
-                      ["Autre", "autre"]
-                    ]),
-                    class: "field__input field__select",
-                    required: true %>
-            </div>
+            <input id="contact_date_display"
+                   type="text"
+                   class="field__input"
+                   placeholder="Choisir une date (optionnel)"
+                   autocomplete="off"
+                   readonly
+                   data-action="click->tw-datepicker#toggle"
+                   data-tw-datepicker-target="display" />
 
-            <!-- DATEPICKER INLINE (sans heure) -->
-            <div class="field field--full"
-                 data-controller="tw-datepicker"
-                 data-tw-datepicker-max-days-value="365"
-                 data-tw-datepicker-show-time-value="false">
+            <%= hidden_field_tag :date, nil, data: { tw_datepicker_target: "hidden" } %>
 
-              <label class="field__label" for="contact_date_display">
-                Date souhaitée (optionnel)
-              </label>
+            <div class="tw-cal tw-cal--inline"
+                 data-tw-datepicker-target="panel"
+                 role="group"
+                 aria-label="Choisir une date"
+                 hidden>
 
-              <input id="contact_date_display"
-                     type="text"
-                     class="field__input"
-                     placeholder="Choisir une date (optionnel)"
-                     autocomplete="off"
-                     readonly
-                     data-tw-datepicker-target="display" />
+              <div class="tw-cal__head">
+                <button type="button"
+                        class="tw-cal__nav"
+                        data-action="tw-datepicker#prevMonth"
+                        aria-label="Mois précédent">
+                  <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
 
-              <%= hidden_field_tag :date, nil, data: { tw_datepicker_target: "hidden" } %>
+                <div class="tw-cal__title" data-tw-datepicker-target="title"></div>
 
-              <div class="tw-cal tw-cal--inline" role="group" aria-label="Choisir une date">
-                <div class="tw-cal__head">
-                  <button type="button" class="tw-cal__nav" data-action="tw-datepicker#prevMonth" aria-label="Mois précédent">
-                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                  </button>
-
-                  <div class="tw-cal__title" data-tw-datepicker-target="title"></div>
-
-                  <button type="button" class="tw-cal__nav" data-action="tw-datepicker#nextMonth" aria-label="Mois suivant">
-                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-
-                <div class="tw-cal__dow" aria-hidden="true">
-                  <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
-                </div>
-
-                <div class="tw-cal__grid" role="grid" data-tw-datepicker-target="days"></div>
-
-                <!-- slots cachés si show-time=false -->
-                <div class="tw-cal__time" data-tw-datepicker-target="timeWrap">
-                  <p class="tw-cal__timeLabel">Heure</p>
-                  <div class="tw-cal__slots" data-tw-datepicker-target="slots"></div>
-                  <p class="tw-cal__hint">Optionnel.</p>
-                </div>
-
-                <div class="tw-cal__actions">
-                  <button type="button" class="tw-cal__btn tw-cal__btn--ghost" data-action="tw-datepicker#clear">
-                    Effacer
-                  </button>
-                  <button type="button" class="tw-cal__btn tw-cal__btn--primary" data-action="tw-datepicker#closeInline">
-                    OK
-                  </button>
-                </div>
+                <button type="button"
+                        class="tw-cal__nav"
+                        data-action="tw-datepicker#nextMonth"
+                        aria-label="Mois suivant">
+                  <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
               </div>
 
-              <p class="field__hint">Tu peux aussi laisser vide si tu n’as pas encore de date.</p>
+              <div class="tw-cal__dow" aria-hidden="true">
+                <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+              </div>
+
+              <div class="tw-cal__grid" role="grid" data-tw-datepicker-target="days"></div>
+
+              <div class="tw-cal__actions">
+                <button type="button"
+                        class="tw-cal__btn tw-cal__btn--ghost"
+                        data-action="tw-datepicker#clear">
+                  Effacer
+                </button>
+
+                <button type="button"
+                        class="tw-cal__btn tw-cal__btn--primary"
+                        data-action="tw-datepicker#closeInline">
+                  OK
+                </button>
+              </div>
+
             </div>
 
-            <div class="field">
-              <%= label_tag :guests, "Nombre de personnes (optionnel)", class: "field__label" %>
-              <%= number_field_tag :guests, nil, class: "field__input", min: 1, placeholder: "Ex : 20" %>
-            </div>
-
-            <div class="field field--full">
-              <%= label_tag :message, "Détails", class: "field__label" %>
-              <%= text_area_tag :message, nil,
-                    class: "field__input field__textarea",
-                    rows: 6,
-                    placeholder: "Ex : privatisation vendredi soir, 30 personnes, budget par personne, contraintes alimentaires, horaires…",
-                    required: true %>
-            </div>
+            <p class="field__hint">Tu peux aussi laisser vide si tu n’as pas encore de date.</p>
           </div>
 
-          <div class="form-actions">
-            <%= submit_tag "Envoyer la demande", class: "btn btn--primary btn--wide" %>
-            <p class="form-note">Réponse sous 24–48h (jours ouvrés).</p>
+          <div class="field">
+            <%= label_tag :guests, "Nombre de personnes (optionnel)", class: "field__label" %>
+            <%= number_field_tag :guests, nil, class: "field__input", min: 1, placeholder: "Ex : 20" %>
           </div>
 
-        <% end %>
-      </section>
+          <div class="field field--full">
+            <%= label_tag :message, "Détails", class: "field__label" %>
+            <%= text_area_tag :message, nil,
+                  class: "field__input field__textarea",
+                  rows: 6,
+                  placeholder: "Ex : privatisation vendredi soir, 30 personnes, budget par personne, contraintes alimentaires, horaires…",
+                  required: true %>
+          </div>
+        </div>
 
-    </div>
+        <div class="form-actions">
+          <%= submit_tag "Envoyer la demande", class: "btn btn--primary btn--wide" %>
+          <p class="form-note">Réponse sous 24–48h (jours ouvrés).</p>
+        </div>
+
+      <% end %>
+    </section>
+
   </div>
 </div>

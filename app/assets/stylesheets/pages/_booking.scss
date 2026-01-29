@@ -4,16 +4,11 @@
    Prefix: rs-*
    ========================================================= */
 
-.reservation-page{
-  width: 100%;
-}
+.reservation-page{ width: 100%; }
 
 /* wrapper */
 .reservation-page__wrap{
-  width: 92%;
-  max-width: 1400px;
   margin: 0 auto;
-
 }
 
 /* card */
@@ -21,7 +16,6 @@
   width: 100%;
   padding: 34px 28px;
   background: rgba(255,255,255,.04);
-
 }
 
 /* head */
@@ -54,17 +48,38 @@
   gap: 16px;
 }
 
-.reservation-page .rs-field--full{
-  grid-column: 1 / -1;
+.reservation-page .rs-field--full{ grid-column: 1 / -1; }
+
+/* =========================================================
+   ALIGN STEP 1 (label + summary + input + calendar)
+   Make input same width as calendar and centered
+   ========================================================= */
+.reservation-page .rs-field--full > .rs-label,
+.reservation-page .rs-field--full > .rs-summary,
+.reservation-page .rs-field--full > .rs-input{
+  width: 100%;
+  max-width: 1000px;   /* same as calendar */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* spacing consistency */
+.reservation-page .rs-field--full > .rs-label{
+  margin-bottom: .45rem;
+}
+
+.reservation-page .rs-field--full > .rs-input{
+  display: block;
+}
+
+/* label */
 .reservation-page .rs-label{
   display:block;
   font-size: .95rem;
   color: rgba(255,255,255,.86);
-  margin: 0 0 .45rem;
 }
 
+/* input */
 .reservation-page .rs-input{
   width: 100%;
   background: rgba(255,255,255,.06);
@@ -75,9 +90,7 @@
   outline: none;
 }
 
-.reservation-page .rs-input::placeholder{
-  color: rgba(255,255,255,.45);
-}
+.reservation-page .rs-input::placeholder{ color: rgba(255,255,255,.45); }
 
 .reservation-page .rs-input:focus{
   border-color: rgba(201,164,106,.55);
@@ -88,6 +101,75 @@
   margin: 8px 0 0;
   font-size: .86rem;
   color: rgba(255,255,255,.55);
+}
+
+/* summary (after pick) */
+.reservation-page .rs-summary{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.05);
+  margin: 10px auto 12px; /* center + spacing */
+}
+
+.reservation-page .rs-summary__text{
+  color: rgba(255,255,255,.90);
+  font-weight: 650;
+}
+
+.reservation-page .rs-summary__edit{
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 650;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.reservation-page .rs-summary__edit:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.10);
+  border-color: rgba(201,164,106,.25);
+}
+
+/* step 2 container */
+.reservation-page .rs-step2{
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.reservation-page .rs-stepTitle{
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.reservation-page .rs-stepTitle__h{
+  margin: 0 0 6px;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  color: rgba(255,255,255,.92);
+  font-size: 1.35rem;
+}
+
+.reservation-page .rs-stepTitle__p{
+  margin: 0;
+  color: rgba(255,255,255,.65);
+  font-size: .95rem;
+}
+
+.reservation-page .rs-stepGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 /* actions */
@@ -148,7 +230,7 @@
 /* inline */
 .reservation-page .rs-cal--inline{
   position: static;
-  margin: 22px auto 0;
+  margin: 16px auto 0;
   transform: none;
   width: 100%;
   max-width: 1000px;
@@ -292,6 +374,13 @@
   border-color: rgba(201,164,106,.60);
 }
 
+.reservation-page .rs-cal__slotsEmpty{
+  margin: 0;
+  color: rgba(255,255,255,.60);
+  font-size: .92rem;
+  padding: 6px 2px;
+}
+
 .reservation-page .rs-cal__hint{
   margin: 10px 0 0;
   font-size: .82rem;
@@ -340,19 +429,20 @@
     padding: 20px 0;
   }
 
-  .reservation-page .rs-card{
-    padding: 26px 18px;
-  }
+  .reservation-page .rs-card{ padding: 26px 18px; }
 
-  .reservation-page .rs-grid{
-    grid-template-columns: 1fr;
-  }
+  .reservation-page .rs-grid{ grid-template-columns: 1fr; }
 
-  .reservation-page .rs-title{
-    font-size: 1.8rem;
-  }
+  .reservation-page .rs-stepGrid{ grid-template-columns: 1fr; }
 
-  .reservation-page .rs-cal--inline{
+  .reservation-page .rs-title{ font-size: 1.8rem; }
+
+  /* on laisse le calendrier full width mobile */
+  .reservation-page .rs-field--full > .rs-label,
+  .reservation-page .rs-field--full > .rs-summary,
+  .reservation-page .rs-field--full > .rs-input{
     max-width: 100%;
   }
+
+  .reservation-page .rs-cal--inline{ max-width: 100%; }
 }

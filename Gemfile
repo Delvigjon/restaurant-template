@@ -29,7 +29,8 @@ gem "simple_form"
 gem "bootsnap", require: false
 
 # Windows timezone fix
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+gem "tzinfo-data", platforms: [:windows, :jruby]
+
 
 group :development, :test do
   gem "dotenv-rails"
@@ -45,3 +46,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "ruby-lsp", "~> 0.26.5"
+
+gem "ruby-lsp-rails", "~> 0.4.8"

@@ -1,13 +1,110 @@
-Dish.create([
-  { name: 'Soupe à l’oignon', description: 'Soupe traditionnelle française avec des croûtons et du fromage fondu', price: 8.00, category: 'Entrée' },
-  { name: 'Tartare de saumon', description: 'Tartare de saumon frais avec une touche de citron et d’aneth', price: 13.50, category: 'Entrée' },
-  { name: 'Foie gras maison', description: 'Foie gras de canard accompagné de chutney de figues et de pain brioché', price: 14.00, category: 'Entrée' },
-  
-  { name: 'Filet de bar', description: 'Filet de bar grillé avec une sauce vierge, servi avec du riz basmati', price: 19.50, category: 'Plat' },
-  { name: 'Risotto aux champignons', description: 'Risotto crémeux aux champignons sauvages et parmesan', price: 16.00, category: 'Plat' },
-  { name: 'Côte de boeuf', description: 'Côte de boeuf grillée à la perfection, servie avec frites maison et sauce béarnaise', price: 25.00, category: 'Plat' },
-  
-  { name: 'Crème brûlée', description: 'Crème vanillée caramélisée au chalumeau, avec une texture onctueuse', price: 6.50, category: 'Dessert' },
-  { name: 'Tarte Tatin', description: 'Tarte aux pommes renversée servie tiède avec de la crème fraîche', price: 7.50, category: 'Dessert' },
-  { name: 'Assiette de fromages', description: 'Sélection de fromages français accompagnés de pain et de confiture', price: 9.00, category: 'Dessert' }
-]);
+puts "🧹 Nettoyage des plats..."
+Dish.destroy_all
+
+puts "🍽️ Création des plats..."
+
+Dish.create!([
+
+  # ================== ENTRÉES
+  {
+    name: "Velouté de butternut",
+    description: "Crème légère, noisette torréfiée, huile d’herbes",
+    price: 9.00,
+    category: "Entrée"
+  },
+  {
+    name: "Œuf parfait",
+    description: "Champignons, espuma parmesan, crumble",
+    price: 11.00,
+    category: "Entrée"
+  },
+  {
+    name: "Tartare de saumon",
+    description: "Citron, aneth, pickles d’oignon rouge",
+    price: 13.00,
+    category: "Entrée"
+  },
+
+  # ================== PLATS
+  {
+    name: "Volaille fermière",
+    description: "Jus réduit, purée maison, légumes de saison",
+    price: 19.00,
+    category: "Plat"
+  },
+  {
+    name: "Filet de bar",
+    description: "Sauce vierge, riz basmati, herbes fraîches",
+    price: 22.00,
+    category: "Plat"
+  },
+  {
+    name: "Risotto aux champignons",
+    description: "Parmesan affiné, champignons sauvages",
+    price: 18.00,
+    category: "Plat"
+  },
+
+  # ================== DESSERTS
+  {
+    name: "Crème brûlée",
+    description: "Vanille bourbon, caramel fin",
+    price: 8.00,
+    category: "Dessert"
+  },
+  {
+    name: "Tarte tatin",
+    description: "Pommes confites, crème crue",
+    price: 9.00,
+    category: "Dessert"
+  },
+  {
+    name: "Assiette de fromages",
+    description: "Sélection du moment",
+    price: 11.00,
+    category: "Dessert"
+  },
+
+  # ================== COCKTAILS (AJOUT IMPORTANT)
+  {
+    name: "Spritz maison",
+    description: "Apéritif italien, orange fraîche",
+    price: 9.00,
+    category: "Cocktail"
+  },
+  {
+    name: "Negroni",
+    description: "Gin, vermouth rouge, Campari",
+    price: 10.00,
+    category: "Cocktail"
+  },
+  {
+    name: "Mocktail fruits rouges",
+    description: "Sans alcool, fruits frais et tonic",
+    price: 7.00,
+    category: "Cocktail"
+  },
+
+  # ================== BOISSONS
+  {
+    name: "Verre de vin (12cl)",
+    description: "Blanc / rouge / rosé — sélection de la semaine",
+    price: 6.00,
+    category: "Boisson"
+  },
+  {
+    name: "Bière artisanale",
+    description: "Pression ou bouteille selon arrivage",
+    price: 7.00,
+    category: "Boisson"
+  },
+  {
+    name: "Eau plate / gazeuse",
+    description: "75cl",
+    price: 5.00,
+    category: "Boisson"
+  }
+
+])
+
+puts "✅ Seeds terminés !"
