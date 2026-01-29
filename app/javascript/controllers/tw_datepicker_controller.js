@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["display", "hidden", "title", "days", "slots", "timeWrap"]
+  static targets = ["display", "hidden", "title", "days", "slots", "timeWrap", "panel"]
   static values = {
     maxDays: { type: Number, default: 21 },
     showTime: { type: Boolean, default: true }
@@ -22,6 +22,11 @@ export default class extends Controller {
       this.timeWrapTarget.style.display = "none"
     }
 
+    // cache le panel au chargement (contact)
+    if (this.hasPanelTarget) {
+      this.panelTarget.hidden = true
+    }
+
     // si valeur déjà présente (edit)
     const v = this.hiddenTarget.value
     if (v) {
@@ -37,6 +42,11 @@ export default class extends Controller {
 
     this.render()
     this.renderSlots()
+  }
+
+  toggle() {
+    if (!this.hasPanelTarget) return
+    this.panelTarget.hidden = !this.panelTarget.hidden
   }
 
   prevMonth() {
@@ -60,21 +70,9 @@ export default class extends Controller {
     this.renderSlots()
   }
 
-  // bouton "prochain créneau" (réservation)
-  pickSoonest() {
-    const d = new Date()
-    // prochain jour dispo (aujourd’hui inclus) + premier créneau
-    this.selectedDate = this.strip(d)
-    this.selectedTime = this.showTimeValue ? "19:00" : null
-    this.writeValue()
-    this.setDisplay()
-    this.render()
-    this.renderSlots()
-  }
-
-  // (contact) bouton OK sans fermeture (inline)
+  // (contact) bouton OK : ferme juste le calendrier
   closeInline() {
-    // ne fait rien, juste un bouton de validation visuelle
+    if (this.hasPanelTarget) this.panelTarget.hidden = true
     this.displayTarget.focus()
   }
 
@@ -133,7 +131,6 @@ export default class extends Controller {
       btn.addEventListener("click", () => {
         if (btn.disabled) return
         this.selectedDate = dStrip
-        // si showTime, on garde une heure si existante sinon on met une par défaut
         if (this.showTimeValue && !this.selectedTime) this.selectedTime = "19:00"
         this.writeValue()
         this.setDisplay()
@@ -152,7 +149,6 @@ export default class extends Controller {
     this.slotsTarget.innerHTML = ""
     if (!this.showTimeValue) return
 
-    // slots simples (tu pourras les rendre dynamiques plus tard)
     const slots = ["12:00","12:30","13:00","19:00","19:30","20:00","20:30","21:00"]
 
     slots.forEach((t) => {

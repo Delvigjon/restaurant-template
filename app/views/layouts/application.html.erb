@@ -1,27 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <title>RestaurantTemplate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Charset & viewport -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- =========================
+         SEO de base
+         ========================= -->
+    <meta name="description" content="Restaurant bistronomique à Nancy. Cuisine de saison, produits frais et ambiance chaleureuse.">
+
+    <!-- =========================
+         Favicons
+         ========================= -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/icon.png">
+
+
+    <!-- =========================
+         Mobile / PWA
+         ========================= -->
+    <meta name="theme-color" content="#0f1013">
+
+
+
+
+    <!-- =========================
+         Assets Rails
+         ========================= -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body id="top">
+
     <div class="wrapper">
+
+      <!-- Navbar -->
       <%= render "shared/navbar" %>
 
+      <!-- Cookie banner -->
       <%= render "shared/cookie_banner" %>
 
+      <!-- Flash messages -->
       <%= render "shared/flashes" %>
+
+      <!-- Page content -->
       <%= yield %>
+
     </div>
 
+    <!-- Footer -->
     <%= render "shared/footer" %>
 
+    <!-- Back to top -->
     <a href="#top"
        class="back-to-top"
        aria-label="Revenir en haut"
@@ -29,5 +66,6 @@
        data-action="click->back-to-top#scroll">
       <i class="fas fa-chevron-up" aria-hidden="true"></i>
     </a>
+
   </body>
 </html>

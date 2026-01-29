@@ -1,4 +1,4 @@
-<div class="reservation-page" data-controller="reservation">
+<div class="reservation-page">
   <div class="reservation-page__wrap">
     <div class="rs-card">
 
@@ -14,50 +14,32 @@
                     data: { turbo: true },
                     class: "rs-form" do |f| %>
 
-        <div class="rs-grid">
+        <!-- ✅ Le controller est ici (wrapper) pour que step2/summary soient bien trouvés -->
+        <div class="rs-grid"
+             data-controller="reservation-datepicker"
+             data-reservation-datepicker-max-days-value="21"
+             data-reservation-datepicker-open-on-connect-value="true">
 
-          <div class="rs-field">
-            <%= f.label :name, "Nom", class: "rs-label" %>
-            <%= f.text_field :name,
-                  class: "rs-input",
-                  placeholder: "Votre nom" %>
-          </div>
-
-          <div class="rs-field">
-            <%= f.label :email, "Email", class: "rs-label" %>
-            <%= f.email_field :email,
-                  class: "rs-input",
-                  placeholder: "nom@domaine.fr" %>
-          </div>
-
-          <div class="rs-field">
-            <%= f.label :phone, "Téléphone", class: "rs-label" %>
-            <%= f.telephone_field :phone,
-                  class: "rs-input",
-                  placeholder: "06 00 00 00 00" %>
-          </div>
-
-          <div class="rs-field">
-            <%= f.label :number_of_guests, "Nombre de convives", class: "rs-label" %>
-            <%= f.number_field :number_of_guests,
-                  class: "rs-input",
-                  min: 1,
-                  max: 12,
-                  placeholder: "2" %>
-            <p class="rs-hint">
-              Pour plus de 12 personnes, contactez-nous directement.
-            </p>
-          </div>
-
-          <!-- Datepicker INLINE (toujours visible, pas de popover) -->
-          <div class="rs-field rs-field--full"
-               data-controller="reservation-datepicker"
-               data-reservation-datepicker-max-days-value="21">
+          <!-- =========================
+               STEP 1 — DATE & TIME
+               ========================= -->
+          <div class="rs-field rs-field--full">
 
             <label class="rs-label" for="reservation_date_display">
               Date & heure
             </label>
 
+            <!-- Résumé (affiché après choix) -->
+            <div class="rs-summary" data-reservation-datepicker-target="summary" hidden>
+              <span class="rs-summary__text" data-reservation-datepicker-target="summaryText"></span>
+              <button type="button"
+                      class="rs-summary__edit"
+                      data-action="reservation-datepicker#edit">
+                Modifier
+              </button>
+            </div>
+
+            <!-- Input display (facultatif) -->
             <input
               id="reservation_date_display"
               type="text"
@@ -68,10 +50,12 @@
               data-reservation-datepicker-target="display"
             />
 
+            <!-- Hidden field réellement envoyé -->
             <%= f.hidden_field :date,
                   id: "reservation_date",
                   data: { reservation_datepicker_target: "hidden" } %>
 
+            <!-- Calendrier INLINE (visible au début) -->
             <div class="rs-cal rs-cal--inline"
                  data-reservation-datepicker-target="popover"
                  role="region"
@@ -108,23 +92,78 @@
               <div class="rs-cal__actions">
                 <button type="button"
                         class="rs-cal__btn rs-cal__btn--ghost"
-                        data-action="reservation-datepicker#clear">Effacer</button>
+                        data-action="reservation-datepicker#clear">
+                  Effacer
+                </button>
 
                 <button type="button"
                         class="rs-cal__btn rs-cal__btn--primary"
-                        data-action="reservation-datepicker#pickToday">Aujourd’hui</button>
+                        data-action="reservation-datepicker#pickToday">
+                  Aujourd’hui
+                </button>
               </div>
 
             </div>
           </div>
 
-        </div>
+          <!-- =========================
+               STEP 2 — FORM (hidden until date+time selected)
+               ========================= -->
+          <div class="rs-step2"
+               data-reservation-datepicker-target="step2"
+               hidden>
 
-        <div class="rs-actions">
-          <%= f.submit "Réserver", class: "rs-btn rs-btn--primary rs-btn--wide" %>
-          <p class="rs-note">
-            En validant, vous acceptez d’être recontacté pour confirmation.
-          </p>
+            <div class="rs-stepTitle">
+              <h2 class="rs-stepTitle__h">Vos informations</h2>
+              <p class="rs-stepTitle__p">Renseignez vos coordonnées pour confirmer la demande.</p>
+            </div>
+
+            <div class="rs-stepGrid">
+
+              <div class="rs-field">
+                <%= f.label :name, "Nom", class: "rs-label" %>
+                <%= f.text_field :name,
+                      class: "rs-input",
+                      placeholder: "Votre nom" %>
+              </div>
+
+              <div class="rs-field">
+                <%= f.label :email, "Email", class: "rs-label" %>
+                <%= f.email_field :email,
+                      class: "rs-input",
+                      placeholder: "nom@domaine.fr" %>
+              </div>
+
+              <div class="rs-field">
+                <%= f.label :phone, "Téléphone", class: "rs-label" %>
+                <%= f.telephone_field :phone,
+                      class: "rs-input",
+                      placeholder: "06 00 00 00 00" %>
+              </div>
+
+              <div class="rs-field">
+                <%= f.label :number_of_guests, "Nombre de convives", class: "rs-label" %>
+                <%= f.number_field :number_of_guests,
+                      class: "rs-input",
+                      min: 1,
+                      max: 12,
+                      placeholder: "2" %>
+                <p class="rs-hint">
+                  Pour plus de 12 personnes, contactez-nous directement.
+                </p>
+              </div>
+
+            </div>
+
+            <div class="rs-actions">
+              <%= f.submit "Réserver", class: "rs-btn rs-btn--primary rs-btn--wide" %>
+              <p class="rs-note">
+                En validant, vous acceptez d’être recontacté pour confirmation.
+              </p>
+            </div>
+
+          </div>
+
         </div>
 
       <% end %>
